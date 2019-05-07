@@ -2,6 +2,11 @@ package stackQueue;
 
 import java.util.LinkedList;
 
+/* author : violet4795
+ * 프로그래머스 : 코딩테스트연습 : 해시큐 2번 : 프린터
+ * 
+ */
+
 public class Printer {
 	public static void main(String[] args) {
 		Solution s = new Solution();
