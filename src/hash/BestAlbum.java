@@ -7,6 +7,7 @@ import java.util.HashMap;
 /* author : violet4795
  * 프로그래머스 : 코딩테스트연습 : hash 4번 : 베스트앨범
  * 미완성 40점. 테스트케이스 오류 찾지못함
+ * 20190507 치명적인 오류 발견.. 수정후 풀이완료
  */
 
 public class BestAlbum {
@@ -14,9 +15,11 @@ public class BestAlbum {
 	public static void main(String[] args) {
 		Solution s = new Solution();
 		//String[] genres = new String[] {"classic", "pop", "classic", "classic", "pop"};
-		String[] genres = new String[] {"a", "a", "a", "a", "e", "b", "f", "f"};
+		String[] genres = new String[] {"a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"};
+		//String[] genres = new String[] {"a", "a", "a", "a", "e", "b", "f", "f", "a", "a", "b", "b"};
 		//int[] plays = new int[] {500, 600, 150, 800, 2500};
-		int[] plays = new int[] {800, 800, 600, 754, 953, 456, 448, 15987};
+		int[] plays = new int[] {801,800,800,800,800,800,800,800,800,800,800,800,800};
+		//int[] plays = new int[] {800, 800, 800, 800, 953, 456, 448, 15987, 800, 800, 10000, 10000};
 		int[] answer = s.solution(genres, plays);
 		System.out.println(Arrays.toString(answer));
 	}
@@ -43,11 +46,17 @@ class Solution {
 							break;
 						} else if (plays[i] == playList.get(genres[i]).get(j)[1]) {
 							if (i > playList.get(genres[i]).get(j)[0]) {
-								playList.get(genres[i]).add(j + 1, new int[] { i, plays[i] });
+								if(j + 1 == playList.get(genres[i]).size()) {
+									playList.get(genres[i]).add(j + 1, new int[] { i, plays[i] });
+									break;
+								}
 							} else {
 								playList.get(genres[i]).add(j, new int[] { i, plays[i] });
+								break;
 							}
-							break;
+							
+						}else {
+							playList.get(genres[i]).add(new int[] { i, plays[i] });
 						}
 					}
 
